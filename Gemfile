@@ -8,7 +8,12 @@ gem "rake"
 
 gem "sqlite3"
 
-gem "require_all"
+group :development do
+  gem "faker", "~> 2.18"
   
   gem "pry"
+end
+
+gem "require_all"
+  
 
