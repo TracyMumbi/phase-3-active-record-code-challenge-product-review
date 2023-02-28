@@ -1,4 +1,10 @@
 puts "🌱 Seeding data..."
+# create users
+50.times do
+  user = User.create(
+    name: Faker::Name.name
+  )
+end
 # run a loop 50 times
 50.times do
     # create a game with random data
@@ -8,28 +14,19 @@ puts "🌱 Seeding data..."
     )
   
     # # create between 1 and 5 reviews for each product
+    users = User.all
+    products = Product.all
     rand(1..5).times do
+      user = users.sample
+      product = products.sample
       Review.create(
+        user: user,
         product_id: product.id,
         star_rating: rand(1..5),
         comment: Faker::Lorem.sentence         
       )
     end
   end
-  # create users
-  50.times do
-    user = User.create(
-      name: Faker::Name.name
-    )
-  end
 
-  # User#reviews
-  user1 = User.first
-  review2 = Review.second
-  user1.reviews << review2
 
-  user2 = User.second
-  review1 = Review.first
-  user2.reviews << review1
-  
 puts "🌱 Done seeding!"
